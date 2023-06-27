@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm run transpile; firebase deploy",
-    "transpile": "showdown makehtml -i ./wiki/family-pictures.md -o ./public/family-pictures.html",
-    "prettify": "prettier --write ."
+    "deploy": "npm run transpile; prettier --write .; firebase deploy",
+    "transpile": "showdown makehtml -i ./wiki/family-pictures.md -o ./public/family-pictures.html"
   },
   "repository": {
     "type": "git",

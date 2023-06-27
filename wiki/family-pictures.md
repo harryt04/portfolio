@@ -1,6 +1,8 @@
 ## This page breaks down how to connect to the Thomas family pictures and home videos server.
 
-This server is used for backup purposes. All pictures are redundantly stored on multiple hard drives so data can be recovered in the event of a hard drive failure. Additionally, pictures stored on this server are backed up to my plex server computer, so that in the event of a natural disaster or a basement flood, the pictures can be recovered from the off-site backup machine.
+This server is used for backup purposes. All pictures are redundantly stored on multiple hard drives so data can be recovered in the event of a hard drive failure. Additionally, pictures stored on this server are backed up to my plex server computer, so that in the event of a natural disaster or a flooded basement, the pictures can be recovered from the off-site backup machine.
+
+I lost 6 months of pictures from my mission due to SD card corruption. I will never make this mistake again. Follow this wiki and store your pictures in this folder, and your pictures will never corrupt either.
 
 ## You MUST be connected to the home wifi "Thomashack" in order to connect to this folder share. This is not accessible outside of our home network.
 
