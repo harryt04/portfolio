@@ -31,6 +31,17 @@ I lost 6 months of pictures from my mission due to SD card corruption. I will ne
 
 ---
 
+# Connect from iPhone
+
+1. Open Files app
+1. Go to browse
+1. Go to shared -> HarryNAS
+1. Open ThomNAS
+
+   <img src="./attachments/iphone.png" height="600" >
+
+---
+
 # Transferring pictures TO your iPhone
 
 1. Borrow lightning to SD reader from Harrison
