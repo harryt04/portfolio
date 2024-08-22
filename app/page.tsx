@@ -13,7 +13,10 @@ export default function Home() {
         <div className="grid w-full gap-4 p-4">
           <p className="text-2xl font-bold">Hi, I&apos;m Harry Thomas</p>
           <p className="text-m">
-            I&apos;m a full stack web and mobile developer
+            I&apos;m a full stack web and mobile developer.
+          </p>
+          <p className="text-m">
+            I have a passion for separating signal from noise.
           </p>
           <Link href="/resume.pdf">
             <Button className="w-48" variant="outline">
