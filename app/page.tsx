@@ -31,10 +31,7 @@ export default function Home() {
               My resume
             </Button>
           </Link>
-          <Link
-            href="https://github.com/harryt04?tab=repositories"
-            target="_blank"
-          >
+          <Link href="https://github.com/harryt04" target="_blank">
             <Button className="w-48" variant="secondary">
               <GitHubLogoIcon className="mr-2 h-4 w-4" />
               My Github
