@@ -13,8 +13,8 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: 'Harry Thomas Wiki',
-  description: 'Wiki for Full Stack Web & Mobile Deveoloper Harry Thomas',
+  title: 'Harry Thomas',
+  description: 'Full Stack Web & Mobile Deveoloper Harry Thomas',
 }
 
 export default function RootLayout({
