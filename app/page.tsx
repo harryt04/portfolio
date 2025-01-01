@@ -1,13 +1,11 @@
 import { ThemeSwitcher } from '@/components/custom/themeSwitcher'
 import { Button } from '@/components/ui/button'
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-import IconCloud from '@/components/magicui/icon-cloud'
-import { DotPatternOutlet } from '@/components/custom/dot-pattern-outlet'
 import { Card } from '@/components/ui/card'
+import { FileText } from 'lucide-react'
 
 const mySkills = [
   '.net',
@@ -62,6 +60,7 @@ export default function Home() {
             </p>
             <Link href="/resume.pdf">
               <Button className="w-48" variant="outline">
+                <FileText className="mr-2 h-4 w-4" />
                 My resume
               </Button>
             </Link>
