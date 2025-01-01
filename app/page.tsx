@@ -42,8 +42,8 @@ const mySkills = [
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center py-4 text-center md:h-screen">
-        <div className="flex w-full flex-col items-center justify-center gap-8 md:flex-row">
+      <div className="flex h-screen flex-col items-center justify-center py-4 text-center md:h-screen">
+        <div className="flex w-10/12 flex-col items-center justify-center gap-8 md:w-full md:flex-row">
           <Card className="flex flex-col items-center justify-center gap-4 p-4 text-center">
             <ThemeSwitcher />
             <Avatar className="h-64 w-64 place-self-center">
@@ -81,12 +81,12 @@ export default function Home() {
               </Button>
             </Link>
           </Card>
-          <Card className="relative flex h-full w-max max-w-[32rem] flex-col items-center justify-center rounded-lg bg-background px-20 pb-20 pt-8">
+          {/* <Card className="relative flex h-full w-max max-w-[32rem] flex-col items-center justify-center rounded-lg bg-background px-20 pb-20 pt-8">
             <DotPatternOutlet>
               <p className="text-2xl">Some of my skills</p>
               <IconCloud iconSlugs={mySkills} />
             </DotPatternOutlet>
-          </Card>
+          </Card> */}
         </div>
       </div>
     </>
