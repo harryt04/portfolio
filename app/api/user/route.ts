@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoClient, mongoDBConfig } from '@/lib/mongo-client'
-import type { User } from '@/models/users'
+import type { HST_APP_User } from '@/models/users'
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     // Format user data
-    const userData: Partial<User> = {
+    const userData: Partial<HST_APP_User> = {
       email: body.email,
       status: body.status || 'emailOnly',
     }
