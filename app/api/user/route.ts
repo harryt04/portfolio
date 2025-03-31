@@ -43,9 +43,29 @@ export async function POST(request: Request) {
     if (body.source) userData.source = body.source
     if (body.marketingNotes) userData.marketingNotes = body.marketingNotes
 
-    // If usesApps is provided, add it
+    // Connect to MongoDB first to fetch existing user
+    const client = await getMongoClient()
+    const db = client.db(mongoDBConfig.dbName)
+    const collection = db.collection(mongoDBConfig.collections.users)
+
+    // Look up the user by email
+    const existingUser = await collection.findOne({ email: body.email })
+
+    // Handle usesApps array - merge with existing values if user exists
     if (body.usesApps && Array.isArray(body.usesApps)) {
-      userData.usesApps = body.usesApps
+      if (
+        existingUser &&
+        existingUser.usesApps &&
+        Array.isArray(existingUser.usesApps)
+      ) {
+        // Merge existing and new arrays, remove duplicates with Set
+        userData.usesApps = [
+          ...Array.from(new Set([...existingUser.usesApps, ...body.usesApps])),
+        ]
+      } else {
+        // No existing usesApps, just use the new one
+        userData.usesApps = body.usesApps
+      }
     }
 
     // Only set joined date for new users
@@ -53,11 +73,6 @@ export async function POST(request: Request) {
 
     // If it's a new user, set the joined date
     updateData.$setOnInsert = { joined: new Date() }
-
-    // Connect to MongoDB
-    const client = await getMongoClient()
-    const db = client.db(mongoDBConfig.dbName)
-    const collection = db.collection(mongoDBConfig.collections.users)
 
     // Upsert the user - update if exists, insert if not
     const result = await collection.updateOne(
