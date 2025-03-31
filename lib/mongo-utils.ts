@@ -24,7 +24,14 @@ export async function createMongoDbIndexes(dbName: string) {
     await db.collection(collectionName).createIndexes(indexes)
   }
 
-  await ensureIndex(coll.users, [{ key: { email: 1 } }, { key: { _id: 1 } }])
+  await ensureIndex(coll.users, [
+    { key: { email: 1 }, unique: true }, // Make email unique
+    { key: { _id: 1 } },
+    { key: { source: 1 } }, // Index for marketing source queries
+    { key: { firstName: 1 } }, // For searches by first name
+    { key: { lastName: 1 } }, // For searches by last name
+    { key: { status: 1 } }, // For filtering users by status
+  ])
 
   console.log('Indexes ensured successfully for db: ', dbName)
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoClient, mongoDBConfig } from '@/lib/mongo-client'
-import type { HST_APP_User } from '@/models/users'
+import type { HST_APP_User, MarketingSource } from '@/models/users'
 
 export async function POST(request: Request) {
   try {
@@ -12,10 +12,40 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
     }
 
+    // Validate marketing source if provided
+    const validSources: MarketingSource[] = [
+      'organic_search',
+      'social_media',
+      'referral',
+      'email_campaign',
+      'paid_ad',
+      'content',
+      'direct',
+      'other',
+    ]
+
+    if (body.source && !validSources.includes(body.source)) {
+      return NextResponse.json(
+        { error: 'Invalid marketing source' },
+        { status: 400 },
+      )
+    }
+
     // Format user data
     const userData: Partial<HST_APP_User> = {
       email: body.email,
       status: body.status || 'emailOnly',
+    }
+
+    // Add new fields if provided
+    if (body.firstName) userData.firstName = body.firstName
+    if (body.lastName) userData.lastName = body.lastName
+    if (body.source) userData.source = body.source
+    if (body.marketingNotes) userData.marketingNotes = body.marketingNotes
+
+    // If usesApps is provided, add it
+    if (body.usesApps && Array.isArray(body.usesApps)) {
+      userData.usesApps = body.usesApps
     }
 
     // Only set joined date for new users
