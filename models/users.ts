@@ -15,11 +15,11 @@ export type HST_APP_User = {
   email: string
   joined: Date | string
   status: 'emailOnly' | 'activeCustomer' | 'formerCustomer' | 'doNotContact'
-  usesApps: HST_Apps[]
+  usesApps?: HST_Apps[]
   // Personal info for personalization
   firstName?: string
   lastName?: string
-  source: MarketingSource
+  source?: MarketingSource
   // Notes for manual entries by marketing team
   marketingNotes?: string
 }
