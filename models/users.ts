@@ -22,4 +22,5 @@ export type HST_APP_User = {
   source?: MarketingSource
   // Notes for manual entries by marketing team
   marketingNotes?: string
+  allowsMarketingEmails?: boolean
 }
