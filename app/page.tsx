@@ -58,6 +58,7 @@ export default function Home() {
             <p className="text-m">
               I have a passion for separating signal from noise.
             </p>
+            <p className="text-m">Please ask me about it! 😊</p>
             <Link href="/resume.pdf">
               <Button className="w-48" variant="outline">
                 <FileText className="mr-2 h-4 w-4" />
