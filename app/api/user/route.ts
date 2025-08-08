@@ -32,21 +32,21 @@ export async function POST(request: Request) {
     // Look up the user by email
     const existingUser = await collection.findOne({ email: body.email })
 
+    // If user already exists, return early with 200 status
+    if (existingUser) {
+      return NextResponse.json(
+        {
+          message: 'User already exists',
+          operation: 'none',
+        },
+        { status: 200 },
+      )
+    }
+
     // Handle usesApps array - merge with existing values if user exists
     if (body.usesApps && Array.isArray(body.usesApps)) {
-      if (
-        existingUser &&
-        existingUser.usesApps &&
-        Array.isArray(existingUser.usesApps)
-      ) {
-        // Merge existing and new arrays, remove duplicates with Set
-        userData.usesApps = [
-          ...Array.from(new Set([...existingUser.usesApps, ...body.usesApps])),
-        ]
-      } else {
-        // No existing usesApps, just use the new one
-        userData.usesApps = body.usesApps
-      }
+      // No existing usesApps, just use the new one
+      userData.usesApps = body.usesApps
     }
 
     const updateData: any = { $set: userData }
