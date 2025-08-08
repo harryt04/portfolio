@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoClient, mongoDBConfig } from '@/lib/mongo-client'
-import type { HST_APP_User } from '@/models/users'
+import { ALLOWED_APPS, type HST_APP_User, type HST_Apps } from '@/models/users'
 
 export async function POST(request: Request) {
   try {
@@ -10,6 +10,14 @@ export async function POST(request: Request) {
     // Validate required fields
     if (!body.email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+    }
+
+    // Validate usesApps values
+    if (body.usesApps && Array.isArray(body.usesApps)) {
+      body.usesApps = body.usesApps.filter((app: string) =>
+        ALLOWED_APPS.includes(app as HST_Apps),
+      )
+      if (body.usesApps.length === 0) delete body.usesApps
     }
 
     // Format user data
@@ -74,6 +82,10 @@ async function handleExistingUser(
       { email: body.email },
       { $set: { usesApps: mergedApps } },
     )
+    await alertDiscord(
+      `Updated user ${body.email}. They're using ${mergedApps.join(', ')}.`,
+    )
+
     return NextResponse.json(
       {
         message: 'User updated with new usesApps',
@@ -120,6 +132,9 @@ async function handleNewUser(
 
   // Return appropriate response based on operation result
   if (result.upsertedCount > 0) {
+    await alertDiscord(
+      `Added new user ${userData.email}. They're using ${userData.usesApps?.join(', ')}.`,
+    )
     return NextResponse.json(
       {
         message: 'User created successfully',
@@ -137,4 +152,22 @@ async function handleNewUser(
       { status: 200 },
     )
   }
+}
+
+async function alertDiscord(content: string) {
+  const webhookUrl =
+    'https://discord.com/api/webhooks/1403226107808845957/1rN3946FUKtqolfQiTX0AIcqylVSXLwZ_vi8cO9xVYOrEV7qTb0vVK0tixnKijAONcnl'
+  // Discord expects a non-empty string for "content"
+  if (!content || typeof content !== 'string' || !content.trim()) {
+    console.warn('Discord alert not sent: content is empty or invalid')
+    return
+  }
+  await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content }),
+  }).catch((err) => {
+    // Optionally log error, but do not throw
+    console.error('Failed to send Discord alert:', err)
+  })
 }
