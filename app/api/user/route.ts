@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoClient, mongoDBConfig } from '@/lib/mongo-client'
-import type { HST_APP_User, MarketingSource } from '@/models/users'
+import type { HST_APP_User } from '@/models/users'
 
 export async function POST(request: Request) {
   try {
@@ -10,25 +10,6 @@ export async function POST(request: Request) {
     // Validate required fields
     if (!body.email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
-    }
-
-    // Validate marketing source if provided
-    const validSources: MarketingSource[] = [
-      'organic_search',
-      'social_media',
-      'referral',
-      'email_campaign',
-      'paid_ad',
-      'content',
-      'direct',
-      'other',
-    ]
-
-    if (body.source && !validSources.includes(body.source)) {
-      return NextResponse.json(
-        { error: 'Invalid marketing source' },
-        { status: 400 },
-      )
     }
 
     // Format user data
@@ -68,11 +49,11 @@ export async function POST(request: Request) {
       }
     }
 
-    // Only set joined date for new users
     const updateData: any = { $set: userData }
-
-    // If it's a new user, set the joined date
-    updateData.$setOnInsert = { joined: new Date() }
+    const mstDateString = new Date().toLocaleString('en-US', {
+      timeZone: 'America/Denver',
+    })
+    updateData.$setOnInsert = { joined: mstDateString }
 
     // Upsert the user - update if exists, insert if not
     const result = await collection.updateOne(
