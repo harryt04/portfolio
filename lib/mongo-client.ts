@@ -25,7 +25,7 @@ export async function getMongoClient(): Promise<MongoClient> {
 }
 
 export const mongoDBConfig = {
-  dbName: `harry-dev-llc-email-list`,
+  dbName: `harry-dev-llc-email-list-${process.env.NODE_ENV}`,
   collections: {
     users: 'users',
   },
