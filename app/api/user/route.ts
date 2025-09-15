@@ -155,8 +155,11 @@ async function handleNewUser(
 }
 
 async function alertDiscord(content: string) {
-  const webhookUrl =
-    'https://discord.com/api/webhooks/1403226107808845957/1rN3946FUKtqolfQiTX0AIcqylVSXLwZ_vi8cO9xVYOrEV7qTb0vVK0tixnKijAONcnl'
+  const webhookUrl = process.env.DISCORD_WEBHOOK_URL
+  if (!webhookUrl) {
+    console.warn('Discord webhook URL not configured')
+    return
+  }
   // Discord expects a non-empty string for "content"
   if (!content || typeof content !== 'string' || !content.trim()) {
     console.warn('Discord alert not sent: content is empty or invalid')
