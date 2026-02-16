@@ -1,5 +1,10 @@
 export type HST_Apps = 'voicebridge' | 'tokei' | 'sky-survey' | 'pantryiq'
-export const ALLOWED_APPS: HST_Apps[] = ['voicebridge', 'tokei', 'sky-survey']
+export const ALLOWED_APPS: HST_Apps[] = [
+  'voicebridge',
+  'tokei',
+  'sky-survey',
+  'pantryiq',
+]
 
 export type HST_APP_User = {
   _id: string
