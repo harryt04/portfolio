@@ -53,7 +53,7 @@ export default function Home() {
             </Avatar>
             <p className="text-2xl font-bold">Hi, I&apos;m Harry Thomas</p>
             <p className="text-m">
-              I&apos;m a full stack web and mobile developer.
+              I&apos;m a staff software engineer.
             </p>
             <p className="text-m">
               I have a passion for separating signal from noise.
