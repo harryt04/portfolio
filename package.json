@@ -9,7 +9,7 @@
     "prettify": "prettier --write .",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "ci": "prettier --check . && next lint && NEXT_PUBLIC_POSTHOG_KEY= NEXT_PUBLIC_POSTHOG_HOST= MONGO_CONNECTION_STRING=mongodb://localhost:27017/test next build"
+    "ci": "prettier --check . && eslint . && NEXT_PUBLIC_POSTHOG_KEY= NEXT_PUBLIC_POSTHOG_HOST= MONGO_CONNECTION_STRING=mongodb://localhost:27017/test next build"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
