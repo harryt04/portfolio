@@ -10,23 +10,24 @@ import { ThemeProvider } from '@/providers/themeProvider'
 const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Harry Thomas',
-  description: 'Full Stack Web & Mobile Deveoloper Harry Thomas',
+  metadataBase: new URL('https://harryt.dev'),
+  title: 'Harry Thomas — Staff Software Engineer',
+  description:
+    'Harry Thomas is a staff software engineer who builds web and mobile products.',
 }
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <PostHogProvider>
-        <body
-          suppressHydrationWarning={true}
-          className={cn(
-            'min-h-screen bg-background font-sans antialiased',
-            fontSans.variable,
-          )}
-        >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans text-foreground antialiased',
+          fontSans.variable,
+        )}
+      >
+        <PostHogProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -36,8 +37,8 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
-        </body>
-      </PostHogProvider>
+        </PostHogProvider>
+      </body>
     </html>
   )
 }
