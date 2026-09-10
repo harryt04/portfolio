@@ -215,25 +215,27 @@ export function ProjectShowcase({
                 </div>
               )}
 
-              <div className="mt-3 grid grid-cols-2 gap-2 md:mt-6">
-                <Link
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="portfolio-action"
-                >
-                  <ExternalLink aria-hidden="true" className="h-4 w-4" />
-                  Open app
-                </Link>
-                <Link
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="portfolio-action"
-                >
-                  <Github aria-hidden="true" className="h-4 w-4" />
-                  Source
-                </Link>
+              <div className="mt-auto pt-3 md:pt-6">
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="portfolio-action"
+                  >
+                    <ExternalLink aria-hidden="true" className="h-4 w-4" />
+                    Open app
+                  </Link>
+                  <Link
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="portfolio-action"
+                  >
+                    <Github aria-hidden="true" className="h-4 w-4" />
+                    Source
+                  </Link>
+                </div>
               </div>
             </div>
 
