@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "prettify": "prettier --write .",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prettier": "prettier --write .",
     "ci": "prettier --check . && eslint . && NEXT_PUBLIC_POSTHOG_KEY=phc_ci_dummy NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com MONGO_CONNECTION_STRING=mongodb://localhost:27017/test next build"
   },

@@ -10,7 +10,7 @@ This is a Next.js 16 portfolio/resume site written in TypeScript. App Router rou
 - `npm run dev` starts the local Next.js development server.
 - `npm run build` produces a production build and performs Next.js validation; run it before submitting changes.
 - `npm run start` serves a completed production build.
-- `npm run lint` runs the configured Next.js ESLint command.
+- `npm run lint` runs ESLint across the repository.
 - `npm run prettify` (or `npm run prettier`) formats the repository with Prettier.
 
 There is no dedicated automated test suite yet. Use `npm run build`, linting, and a manual browser check of affected pages and API routes as the baseline verification.
