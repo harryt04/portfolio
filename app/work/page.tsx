@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const externalLinks = [
   {
-    label: 'My resume',
+    label: 'My résumé',
     href: '/resume.pdf',
     icon: FileText,
     external: false,

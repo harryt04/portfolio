@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const actions = [
   { label: 'My work', href: '/work', icon: BriefcaseBusiness, external: false },
   {
-    label: 'My resume',
+    label: 'My résumé',
     href: '/resume.pdf',
     icon: FileText,
     external: false,
