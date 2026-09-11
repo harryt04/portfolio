@@ -43,6 +43,11 @@ export default function Home() {
         aria-labelledby="introduction-heading"
         className="portfolio-window relative w-full max-w-[27rem] px-[clamp(1.125rem,5vw,1.75rem)] pb-7 pt-16 text-center sm:pt-14"
       >
+        <div aria-hidden="true" className="portfolio-window-controls">
+          <span className="bg-red-400" />
+          <span className="bg-amber-400" />
+          <span className="bg-green-400" />
+        </div>
         <div className="absolute right-3 top-3">
           <ThemeSwitcher />
         </div>

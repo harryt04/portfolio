@@ -92,16 +92,15 @@
 
   .portfolio-window::before {
     content: '';
-    @apply absolute inset-x-0 top-0 h-8 border-b border-border;
-    background-image: radial-gradient(
-      circle,
-      hsl(var(--muted-foreground) / 0.55) 2px,
-      transparent 2.5px
-    );
-    background-position: 14px center;
-    background-repeat: repeat-x;
-    background-size: 13px 13px;
-    clip-path: inset(0 calc(100% - 52px) 0 0);
+    @apply absolute inset-x-0 top-0 h-8 border-b border-border bg-muted/35;
+  }
+
+  .portfolio-window-controls {
+    @apply pointer-events-none absolute left-3 top-2 z-10 flex items-center gap-1.5;
+  }
+
+  .portfolio-window-controls > span {
+    @apply h-2 w-2 rounded-full border border-black/10;
   }
 
   .portfolio-action {
