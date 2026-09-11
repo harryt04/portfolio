@@ -44,12 +44,11 @@ export default function WorkPage() {
             href="/"
             className="focus-ring flex min-h-11 items-center gap-2 font-mono text-sm font-semibold tracking-[-0.02em]"
           >
-            <span className="hidden sm:inline">Harry Thomas</span>
-            <span className="sm:hidden">HT</span>
+            <span>Harry Thomas</span>
             <span aria-hidden="true" className="text-accent">
               /
             </span>
-            <span className="text-muted-foreground">My work</span>
+            <span className="text-muted-foreground">Work</span>
           </Link>
 
           <nav
@@ -81,14 +80,14 @@ export default function WorkPage() {
       <div className="mx-auto max-w-7xl px-4 pb-[max(3rem,env(safe-area-inset-bottom))] pt-14 sm:px-8 sm:pt-20 lg:px-12">
         <div className="mb-10 max-w-3xl sm:mb-14">
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            Selected projects
+            Harry Thomas / Staff Software Engineer
           </p>
-          <h1 className="text-[2.75rem] font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
-            My work
+          <h1 className="text-[2.5rem] font-bold leading-[0.95] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+            Selected work
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Personal products and open-source projects. Open the app or inspect
-            the source.
+            Personal products and open-source projects by Harry Thomas. Open the
+            app or inspect the source.
           </p>
         </div>
 
