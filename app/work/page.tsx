@@ -83,7 +83,7 @@ export default function WorkPage() {
             Harry Thomas / Staff Software Engineer
           </p>
           <h1 className="text-[2.5rem] font-bold leading-[0.95] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
-            Selected work
+            My work
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Personal products and open-source projects by Harry Thomas. Open the

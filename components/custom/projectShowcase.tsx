@@ -2,27 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ExternalLink, Github, MonitorUp, X } from 'lucide-react'
+import { ExternalLink, Github, MonitorUp } from 'lucide-react'
 
 import type { PortfolioProject } from '@/lib/portfolio-projects'
 import { cn } from '@/lib/utils'
-
-const desktopQuery = '(min-width: 768px)'
-
-function useDesktopViewport() {
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    const media = window.matchMedia(desktopQuery)
-    const update = () => setIsDesktop(media.matches)
-
-    update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
-  }, [])
-
-  return isDesktop
-}
 
 function previewUrl(liveUrl: string) {
   const url = new URL(liveUrl)
@@ -30,24 +13,15 @@ function previewUrl(liveUrl: string) {
   return url.toString()
 }
 
-function ProjectPreview({
-  project,
-  isDesktop,
-  isMobileOpen,
-}: {
-  project: PortfolioProject
-  isDesktop: boolean
-  isMobileOpen: boolean
-}) {
+function ProjectPreview({ project }: { project: PortfolioProject }) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [desktopEligible, setDesktopEligible] = useState(false)
+  const [eligible, setEligible] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [timedOut, setTimedOut] = useState(false)
-  const mounted =
-    project.previewEnabled && (isDesktop ? desktopEligible : isMobileOpen)
+  const mounted = project.previewEnabled && eligible
 
   useEffect(() => {
-    if (!isDesktop || !project.previewEnabled || desktopEligible) return
+    if (!project.previewEnabled || eligible) return
 
     const node = containerRef.current
     if (!node) return
@@ -55,7 +29,7 @@ function ProjectPreview({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setDesktopEligible(true)
+          setEligible(true)
           observer.disconnect()
         }
       },
@@ -64,7 +38,7 @@ function ProjectPreview({
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [desktopEligible, isDesktop, project.previewEnabled])
+  }, [eligible, project.previewEnabled])
 
   useEffect(() => {
     setLoaded(false)
@@ -168,16 +142,9 @@ export function ProjectShowcase({
 }: {
   projects: PortfolioProject[]
 }) {
-  const isDesktop = useDesktopViewport()
-  const [openMobilePreview, setOpenMobilePreview] = useState<string | null>(
-    null,
-  )
-
   return (
     <ul className="grid list-none gap-5 p-0 md:grid-cols-2 md:gap-7">
       {projects.map((project) => {
-        const isOpen = openMobilePreview === project.slug
-
         return (
           <li key={project.slug} className="project-card group">
             <div className="order-1 flex flex-1 flex-col p-5 sm:p-6 md:order-2">
@@ -187,33 +154,6 @@ export function ProjectShowcase({
               <p className="mt-2 min-h-[2.9em] text-[0.95rem] leading-[1.5] text-muted-foreground">
                 {project.description}
               </p>
-
-              {project.previewEnabled ? (
-                <button
-                  type="button"
-                  onClick={() =>
-                    setOpenMobilePreview(isOpen ? null : project.slug)
-                  }
-                  aria-expanded={isOpen}
-                  aria-controls={`${project.slug}-preview`}
-                  className="portfolio-action mt-5 w-full md:hidden"
-                >
-                  {isOpen ? (
-                    <X aria-hidden="true" className="h-[18px] w-[18px]" />
-                  ) : (
-                    <MonitorUp
-                      aria-hidden="true"
-                      className="h-[18px] w-[18px]"
-                    />
-                  )}
-                  {isOpen ? 'Close live preview' : 'Load live preview'}
-                </button>
-              ) : (
-                <div className="mt-5 flex min-h-11 items-center justify-center gap-2 border border-dashed border-border px-3 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground md:hidden">
-                  <MonitorUp aria-hidden="true" className="h-4 w-4" />
-                  Preview unavailable
-                </div>
-              )}
 
               <div className="mt-auto pt-3 md:pt-6">
                 <div className="grid grid-cols-2 gap-2">
@@ -241,16 +181,9 @@ export function ProjectShowcase({
 
             <div
               id={`${project.slug}-preview`}
-              className={cn(
-                'order-2 px-5 pb-5 sm:px-6 sm:pb-6 md:order-1 md:p-0',
-                !isDesktop && !isOpen && 'hidden md:block',
-              )}
+              className="order-2 px-5 pb-5 sm:px-6 sm:pb-6 md:order-1 md:p-0"
             >
-              <ProjectPreview
-                project={project}
-                isDesktop={isDesktop}
-                isMobileOpen={isOpen}
-              />
+              <ProjectPreview project={project} />
             </div>
           </li>
         )
