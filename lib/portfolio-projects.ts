@@ -33,7 +33,8 @@ export const portfolioProjects: PortfolioProject[] = [
     liveUrl: 'https://blockparty.harryt.dev',
     sourceUrl: 'https://github.com/harryt04/blockparty',
     previewEnabled: false,
-    previewDisabledReason: 'Preview unavailable while HTTPS is being repaired.',
+    previewDisabledReason:
+      'Preview unavailable because Blockparty disallows embedded pages. Open the app to play.',
   },
   {
     slug: 'mail-flow',
