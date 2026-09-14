@@ -32,9 +32,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description: 'Private multiplayer board game with a deterministic engine.',
     liveUrl: 'https://blockparty.harryt.dev',
     sourceUrl: 'https://github.com/harryt04/blockparty',
-    previewEnabled: false,
-    previewDisabledReason:
-      'Preview unavailable because Blockparty disallows embedded pages. Open the app to play.',
+    previewEnabled: true,
   },
   {
     slug: 'mail-flow',
