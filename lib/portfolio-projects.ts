@@ -23,8 +23,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description: 'Recipes into one trustworthy, shared grocery list.',
     liveUrl: 'https://platter.harryt.dev',
     sourceUrl: 'https://github.com/harryt04/platter',
-    previewEnabled: false,
-    previewDisabledReason: 'Preview unavailable while HTTPS is being repaired.',
+    previewEnabled: true,
   },
   {
     slug: 'blockparty',
