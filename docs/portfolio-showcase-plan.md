@@ -51,18 +51,18 @@ Use a local, curated project data file. Do not fetch GitHub at request time and 
 
 Render these ten public projects in this order:
 
-| Project | Description | Live URL | Source URL | Initial preview state |
-| --- | --- | --- | --- | --- |
-| KanjiForge | Offline-first kanji and vocabulary study PWA. | `https://kanjiforge.app` | `https://github.com/harryt04/kanji-forge` | enabled |
-| Platter | Recipes into one trustworthy, shared grocery list. | `https://platter.harryt.dev` | `https://github.com/harryt04/platter` | disabled until HTTPS is healthy |
-| Blockparty | Private multiplayer board game with a deterministic engine. | `https://blockparty.harryt.dev` | `https://github.com/harryt04/blockparty` | disabled until HTTPS is healthy |
-| MailFlow | A voice-first, hands-free experience for Gmail. | `https://mail.harryt.dev` | `https://github.com/harryt04/mail-flow` | enabled |
-| PantryIQ | Explainable restaurant waste analysis from operational data. | `https://pantry-iq.com` | `https://github.com/harryt04/pantry-iq` | enabled, subject to browser verification |
-| VoiceBridge | Visual communication tools for autistic people and families. | `https://vb.harryt.dev` | `https://github.com/harryt04/voice-bridge` | enabled |
-| Grub Roulette | A simple way to discover a random local restaurant. | `https://grub.harryt.dev` | `https://github.com/harryt04/grub-roulette` | enabled |
-| Sunshine Flower Bar | A warm gifting brand and customer lead experience. | `https://www.sunshineflowerbar.com` | `https://github.com/harryt04/flowers` | enabled |
-| Route Roulette | Random scenic-drive planning near your location. | `https://rr.harryt.dev` | `https://github.com/harryt04/route-roulette` | enabled |
-| Tokei | A multi-timer workspace designed for busy kitchens. | `https://tokei.harryt.dev` | `https://github.com/harryt04/tokei` | enabled, subject to browser verification |
+| Project             | Description                                                  | Live URL                            | Source URL                                   | Initial preview state                    |
+| ------------------- | ------------------------------------------------------------ | ----------------------------------- | -------------------------------------------- | ---------------------------------------- |
+| KanjiForge          | Offline-first kanji and vocabulary study PWA.                | `https://kanjiforge.app`            | `https://github.com/harryt04/kanji-forge`    | enabled                                  |
+| Platter             | Recipes into one trustworthy, shared grocery list.           | `https://platter.harryt.dev`        | `https://github.com/harryt04/platter`        | disabled until HTTPS is healthy          |
+| Blockparty          | Private multiplayer board game with a deterministic engine.  | `https://blockparty.harryt.dev`     | `https://github.com/harryt04/blockparty`     | disabled until HTTPS is healthy          |
+| MailFlow            | A voice-first, hands-free experience for Gmail.              | `https://mail.harryt.dev`           | `https://github.com/harryt04/mail-flow`      | enabled                                  |
+| PantryIQ            | Explainable restaurant waste analysis from operational data. | `https://pantry-iq.com`             | `https://github.com/harryt04/pantry-iq`      | enabled, subject to browser verification |
+| VoiceBridge         | Visual communication tools for autistic people and families. | `https://vb.harryt.dev`             | `https://github.com/harryt04/voice-bridge`   | enabled                                  |
+| Grub Roulette       | A simple way to discover a random local restaurant.          | `https://grub.harryt.dev`           | `https://github.com/harryt04/grub-roulette`  | enabled                                  |
+| Sunshine Flower Bar | A warm gifting brand and customer lead experience.           | `https://www.sunshineflowerbar.com` | `https://github.com/harryt04/flowers`        | enabled                                  |
+| Route Roulette      | Random scenic-drive planning near your location.             | `https://rr.harryt.dev`             | `https://github.com/harryt04/route-roulette` | enabled                                  |
+| Tokei               | A multi-timer workspace designed for busy kitchens.          | `https://tokei.harryt.dev`          | `https://github.com/harryt04/tokei`          | enabled, subject to browser verification |
 
 Exclude the portfolio repository itself, private repositories, and the archived private MiniZinc project. A private repository must never be inferred into the list from authenticated GitHub data.
 
@@ -359,9 +359,9 @@ For every enabled project:
 
 ### Repository checks
 
-- Run `npm install` only if dependencies are absent; do not casually rewrite the lockfile.
-- Run `npm run build` as the primary Next.js/TypeScript validation.
-- The current `npm run lint` script uses the removed `next lint` command and may fail under Next 16. If so, report that existing toolchain issue separately; do not turn this design task into an unrelated lint migration unless necessary to validate changed files.
+- Run `pnpm install` only if dependencies are absent; do not casually rewrite the lockfile.
+- Run `pnpm run build` as the primary Next.js/TypeScript validation.
+- The current `pnpm run lint` script uses the removed `next lint` command and may fail under Next 16. If so, report that existing toolchain issue separately; do not turn this design task into an unrelated lint migration unless necessary to validate changed files.
 - Run Prettier in check mode first. If formatting is needed, format only intentional changed files rather than the whole dirty worktree.
 - Preserve the user's existing `.gitignore` modification and any unrelated worktree changes.
 
@@ -378,7 +378,7 @@ The work is complete when:
 - Platter and Blockparty show a clean disabled state until their HTTPS endpoints are repaired;
 - both complete light and dark themes work, system is the default, and manual override persists;
 - keyboard, touch, reduced-motion, zoom, contrast, and responsive acceptance checks pass;
-- `npm run build` succeeds;
+- `pnpm run build` succeeds;
 - screenshots of both pages are captured at 390×844 and 1440×900 for final review.
 
 ## 11. Assumptions locked by this plan
