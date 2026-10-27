@@ -6,14 +6,14 @@ This is a Next.js 16 portfolio/resume site written in TypeScript. App Router rou
 
 ## Build, Test, and Development Commands
 
-- `npm install` installs the locked project dependencies.
-- `npm run dev` starts the local Next.js development server.
-- `npm run build` produces a production build and performs Next.js validation; run it before submitting changes.
-- `npm run start` serves a completed production build.
-- `npm run lint` runs ESLint across the repository.
-- `npm run prettify` (or `npm run prettier`) formats the repository with Prettier.
+- `pnpm install` installs the locked project dependencies.
+- `pnpm run dev` starts the local Next.js development server.
+- `pnpm run build` produces a production build and performs Next.js validation; run it before submitting changes.
+- `pnpm run start` serves a completed production build.
+- `pnpm run lint` runs ESLint across the repository.
+- `pnpm run prettify` (or `pnpm run prettier`) formats the repository with Prettier.
 
-There is no dedicated automated test suite yet. Use `npm run build`, linting, and a manual browser check of affected pages and API routes as the baseline verification.
+There is no dedicated automated test suite yet. Use `pnpm run build`, linting, and a manual browser check of affected pages and API routes as the baseline verification.
 
 ## Coding Style & Naming Conventions
 
