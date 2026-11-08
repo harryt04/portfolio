@@ -10,6 +10,15 @@ export type PortfolioProject = {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
+    slug: 'hair-n-there',
+    name: 'HairnThere',
+    description:
+      'A neighborhood hair-services website with a mountain-inspired design.',
+    liveUrl: 'https://hairnthere.com',
+    sourceUrl: 'https://github.com/harryt04/hair-n-there',
+    previewEnabled: true,
+  },
+  {
     slug: 'kanji-forge',
     name: 'KanjiForge',
     description: 'Offline-first kanji and vocabulary study PWA.',
