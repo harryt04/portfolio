@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/work' },
 }
 
+// Static files and external profiles, rendered as plain anchors so Next does
+// not prefetch them (the résumé PDF would otherwise download as an RSC fetch).
 const externalLinks = [
   {
     label: 'My résumé',
@@ -61,7 +63,7 @@ export default function WorkPage() {
             </Link>
             <div className="hidden items-center gap-1 md:flex">
               {externalLinks.map(({ label, href, external }) => (
-                <Link
+                <a
                   key={label}
                   href={href}
                   target={external ? '_blank' : undefined}
@@ -69,7 +71,7 @@ export default function WorkPage() {
                   className="header-link"
                 >
                   {label}
-                </Link>
+                </a>
               ))}
             </div>
             <ThemeSwitcher />
@@ -101,7 +103,7 @@ export default function WorkPage() {
           </p>
           <nav aria-label="Additional portfolio links" className="grid gap-2">
             {externalLinks.map(({ label, href, icon: Icon, external }) => (
-              <Link
+              <a
                 key={label}
                 href={href}
                 target={external ? '_blank' : undefined}
@@ -110,7 +112,7 @@ export default function WorkPage() {
               >
                 <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
                 {label}
-              </Link>
+              </a>
             ))}
           </nav>
         </footer>
