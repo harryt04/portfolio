@@ -64,9 +64,10 @@ export default function Home() {
           <Image
             src="/harry-thomas.jpg"
             alt="Harry Thomas in ski gear in the mountains"
-            width={328}
-            height={328}
-            priority
+            width={164}
+            height={164}
+            loading="eager"
+            fetchPriority="high"
             className="h-[132px] w-[132px] rounded-full object-cover sm:h-[164px] sm:w-[164px]"
           />
         </div>
