@@ -52,6 +52,7 @@ function ProjectPreview({ project }: { project: PortfolioProject }) {
   return (
     <div
       ref={containerRef}
+      role="group"
       className="project-preview"
       aria-label={`${project.name} preview`}
     >
