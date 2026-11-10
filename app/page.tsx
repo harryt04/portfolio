@@ -14,24 +14,33 @@ export const metadata: Metadata = {
 }
 
 const actions = [
-  { label: 'My work', href: '/work', icon: BriefcaseBusiness, external: false },
+  {
+    label: 'My work',
+    href: '/work',
+    icon: BriefcaseBusiness,
+    external: false,
+    route: true,
+  },
   {
     label: 'My résumé',
     href: '/resume.pdf',
     icon: FileText,
     external: false,
+    route: false,
   },
   {
     label: 'My GitHub',
     href: 'https://github.com/harryt04',
     icon: GitHubLogoIcon,
     external: true,
+    route: false,
   },
   {
     label: 'My LinkedIn',
     href: 'https://www.linkedin.com/in/harrison-thomas04/',
     icon: LinkedInLogoIcon,
     external: true,
+    route: false,
   },
 ] as const
 
@@ -55,9 +64,10 @@ export default function Home() {
           <Image
             src="/harry-thomas.jpg"
             alt="Harry Thomas in ski gear in the mountains"
-            width={328}
-            height={328}
-            priority
+            width={164}
+            height={164}
+            loading="eager"
+            fetchPriority="high"
             className="h-[132px] w-[132px] rounded-full object-cover sm:h-[164px] sm:w-[164px]"
           />
         </div>
@@ -82,18 +92,24 @@ export default function Home() {
           aria-label="Harry Thomas links"
           className="mt-7 grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-2"
         >
-          {actions.map(({ label, href, icon: Icon, external }) => (
-            <Link
-              key={label}
-              href={href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noreferrer' : undefined}
-              className="portfolio-action"
-            >
-              <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
-              <span>{label}</span>
-            </Link>
-          ))}
+          {actions.map(({ label, href, icon: Icon, external, route }) => {
+            // Only app routes use next/link; static files such as the PDF and
+            // external profiles use plain anchors so Next does not prefetch
+            // them as RSC payloads.
+            const Anchor = route ? Link : 'a'
+            return (
+              <Anchor
+                key={label}
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noreferrer' : undefined}
+                className="portfolio-action"
+              >
+                <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
+                <span>{label}</span>
+              </Anchor>
+            )
+          })}
         </nav>
       </section>
     </main>
