@@ -51,14 +51,6 @@ export const portfolioProjects: PortfolioProject[] = [
     previewEnabled: true,
   },
   {
-    slug: 'pantry-iq',
-    name: 'PantryIQ',
-    description: 'Explainable restaurant waste analysis from operational data.',
-    liveUrl: 'https://pantry-iq.com',
-    sourceUrl: 'https://github.com/harryt04/pantry-iq',
-    previewEnabled: true,
-  },
-  {
     slug: 'voice-bridge',
     name: 'VoiceBridge',
     description: 'Visual communication tools for autistic people and families.',
