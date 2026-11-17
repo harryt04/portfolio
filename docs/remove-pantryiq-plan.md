@@ -1,6 +1,6 @@
 # Remove PantryIQ from the portfolio showcase
 
-Status: proposed implementation plan, 2026-11-17. This PR adds the plan only.
+Status: implemented in this PR, 2026-11-17.
 
 ## Evidence and outcome
 
@@ -48,10 +48,9 @@ the résumé PDF, other projects, dependencies, or site navigation.
   project's preview and links.
 - Confirm `/` still links to `/work`, and the shared CRM app identifier is unchanged.
 - Run `git diff --check` and review the final diff for unrelated changes/secrets.
-- Deliver the implementation in a Treehouse worktree as a separate PR. After an
+- Deliver the implementation in the existing Treehouse worktree and PR. After an
   authorized merge and normal deployment, recheck the production `/work` page;
   a local build alone does not prove the deployed page changed.
 
-The implementation is complete when these checks pass and the public showcase
-omits PantryIQ. This planning PR does not remove it from production or authorize
-merging or deploying the later implementation.
+The catalog change removes PantryIQ from the rendered showcase after deployment.
+Merging and deployment remain separate actions.

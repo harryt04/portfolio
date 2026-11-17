@@ -51,18 +51,18 @@ Use a local, curated project data file. Do not fetch GitHub at request time and 
 
 Render these ten public projects in this order:
 
-| Project             | Description                                                  | Live URL                            | Source URL                                   | Initial preview state                    |
-| ------------------- | ------------------------------------------------------------ | ----------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| KanjiForge          | Offline-first kanji and vocabulary study PWA.                | `https://kanjiforge.app`            | `https://github.com/harryt04/kanji-forge`    | enabled                                  |
-| Platter             | Recipes into one trustworthy, shared grocery list.           | `https://platter.harryt.dev`        | `https://github.com/harryt04/platter`        | disabled until HTTPS is healthy          |
-| Blockparty          | Private multiplayer board game with a deterministic engine.  | `https://blockparty.harryt.dev`     | `https://github.com/harryt04/blockparty`     | disabled until HTTPS is healthy          |
-| MailFlow            | A voice-first, hands-free experience for Gmail.              | `https://mail.harryt.dev`           | `https://github.com/harryt04/mail-flow`      | enabled                                  |
-| PantryIQ            | Explainable restaurant waste analysis from operational data. | `https://pantry-iq.com`             | `https://github.com/harryt04/pantry-iq`      | enabled, subject to browser verification |
-| VoiceBridge         | Visual communication tools for autistic people and families. | `https://vb.harryt.dev`             | `https://github.com/harryt04/voice-bridge`   | enabled                                  |
-| Grub Roulette       | A simple way to discover a random local restaurant.          | `https://grub.harryt.dev`           | `https://github.com/harryt04/grub-roulette`  | enabled                                  |
-| Sunshine Flower Bar | A warm gifting brand and customer lead experience.           | `https://www.sunshineflowerbar.com` | `https://github.com/harryt04/flowers`        | enabled                                  |
-| Route Roulette      | Random scenic-drive planning near your location.             | `https://rr.harryt.dev`             | `https://github.com/harryt04/route-roulette` | enabled                                  |
-| Tokei               | A multi-timer workspace designed for busy kitchens.          | `https://tokei.harryt.dev`          | `https://github.com/harryt04/tokei`          | enabled, subject to browser verification |
+| Project             | Description                                                           | Live URL                            | Source URL                                   | Initial preview state                    |
+| ------------------- | --------------------------------------------------------------------- | ----------------------------------- | -------------------------------------------- | ---------------------------------------- |
+| HairnThere          | A neighborhood hair-services website with a mountain-inspired design. | `https://hairnthere.com`            | `https://github.com/harryt04/hair-n-there`   | enabled                                  |
+| KanjiForge          | Offline-first kanji and vocabulary study PWA.                         | `https://kanjiforge.app`            | `https://github.com/harryt04/kanji-forge`    | enabled                                  |
+| Platter             | Recipes into one trustworthy, shared grocery list.                    | `https://platter.harryt.dev`        | `https://github.com/harryt04/platter`        | disabled until HTTPS is healthy          |
+| Blockparty          | Private multiplayer board game with a deterministic engine.           | `https://blockparty.harryt.dev`     | `https://github.com/harryt04/blockparty`     | disabled until HTTPS is healthy          |
+| MailFlow            | A voice-first, hands-free experience for Gmail.                       | `https://mail.harryt.dev`           | `https://github.com/harryt04/mail-flow`      | enabled                                  |
+| VoiceBridge         | Visual communication tools for autistic people and families.          | `https://vb.harryt.dev`             | `https://github.com/harryt04/voice-bridge`   | enabled                                  |
+| Grub Roulette       | A simple way to discover a random local restaurant.                   | `https://grub.harryt.dev`           | `https://github.com/harryt04/grub-roulette`  | enabled                                  |
+| Sunshine Flower Bar | A warm gifting brand and customer lead experience.                    | `https://www.sunshineflowerbar.com` | `https://github.com/harryt04/flowers`        | enabled                                  |
+| Route Roulette      | Random scenic-drive planning near your location.                      | `https://rr.harryt.dev`             | `https://github.com/harryt04/route-roulette` | enabled                                  |
+| Tokei               | A multi-timer workspace designed for busy kitchens.                   | `https://tokei.harryt.dev`          | `https://github.com/harryt04/tokei`          | enabled, subject to browser verification |
 
 Exclude the portfolio repository itself, private repositories, and the archived private MiniZinc project. A private repository must never be inferred into the list from authenticated GitHub data.
 
@@ -249,7 +249,7 @@ Test every live site with the sandbox. If a specific site cannot render without 
 - An iframe cannot reliably detect every `X-Frame-Options`, CSP `frame-ancestors`, TLS, DNS, or child-app runtime failure. Therefore, external links must remain the real navigation path and the preview must be treated as optional enhancement.
 - The current checks found no `X-Frame-Options` or `frame-ancestors` header on successfully responding sites.
 - As of the planning session, `platter.harryt.dev` and `blockparty.harryt.dev` fail TLS negotiation. Configure them with `previewEnabled: false` and a concise reason until their deployments are repaired and verified.
-- PantryIQ and Tokei showed inconsistent command-line responses during inspection even though browser navigation partially worked. Verify them in the actual embedded browser before leaving their previews enabled.
+- Tokei showed inconsistent command-line responses during inspection even though browser navigation partially worked. Verify it in the actual embedded browser before leaving its preview enabled.
 - If a preview is disabled or fails, show a designed project-colored or neutral fallback with the project name and `Preview unavailable`; never show an empty white rectangle, browser error page, or spinner that runs forever.
 - Set an 8–10 second visual timeout that replaces the skeleton with the fallback. The iframe may remain mounted if it subsequently loads, but the card must remain usable.
 
