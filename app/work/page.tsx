@@ -39,8 +39,8 @@ const externalLinks = [
 
 export default function WorkPage() {
   return (
-    <main className="portfolio-grid min-h-[100svh]">
-      <header className="sticky top-0 z-40 border-b border-border/80 bg-background/95 px-4 backdrop-blur-sm sm:px-8">
+    <main className="portfolio-grid min-h-svh">
+      <header className="border-border/80 bg-background/95 sticky top-0 z-40 border-b px-4 backdrop-blur-xs sm:px-8">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4">
           <Link
             href="/"
@@ -79,15 +79,15 @@ export default function WorkPage() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 pb-[max(3rem,env(safe-area-inset-bottom))] pt-14 sm:px-8 sm:pt-20 lg:px-12">
+      <div className="mx-auto max-w-7xl px-4 pt-14 pb-[max(3rem,env(safe-area-inset-bottom))] sm:px-8 sm:pt-20 lg:px-12">
         <div className="mb-10 max-w-3xl sm:mb-14">
-          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          <p className="text-accent mb-3 font-mono text-xs font-semibold tracking-[0.18em] uppercase">
             Harry Thomas / Staff Software Engineer
           </p>
-          <h1 className="text-[2.5rem] font-bold leading-[0.95] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+          <h1 className="text-[2.5rem] leading-[0.95] font-bold tracking-[-0.06em] sm:text-5xl lg:text-6xl">
             My work
           </h1>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="text-muted-foreground mt-5 text-base leading-relaxed sm:text-lg">
             Personal products and open-source projects by Harry Thomas. Open the
             app or inspect the source.
           </p>
@@ -97,8 +97,8 @@ export default function WorkPage() {
           <ProjectShowcase projects={portfolioProjects} />
         </section>
 
-        <footer className="mt-14 border-t border-border py-8 md:hidden">
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+        <footer className="border-border mt-14 border-t py-8 md:hidden">
+          <p className="text-muted-foreground mb-4 font-mono text-xs tracking-[0.16em] uppercase">
             Elsewhere
           </p>
           <nav aria-label="Additional portfolio links" className="grid gap-2">

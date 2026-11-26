@@ -46,21 +46,21 @@ const actions = [
 
 export default function Home() {
   return (
-    <main className="portfolio-grid relative flex min-h-[100svh] items-center justify-center overflow-hidden px-4 py-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <main className="portfolio-grid relative flex min-h-svh items-center justify-center overflow-hidden px-4 py-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,hsl(var(--accent)/0.09),transparent_48%)]" />
       <section
         aria-labelledby="introduction-heading"
-        className="portfolio-window relative w-full max-w-[27rem] px-[clamp(1.125rem,5vw,1.75rem)] pb-7 pt-16 text-center sm:pt-14"
+        className="portfolio-window relative w-full max-w-108 px-[clamp(1.125rem,5vw,1.75rem)] pt-16 pb-7 text-center sm:pt-14"
       >
         <div aria-hidden="true" className="portfolio-window-controls">
           <span className="bg-red-400" />
           <span className="bg-amber-400" />
           <span className="bg-green-400" />
         </div>
-        <div className="absolute right-3 top-3">
+        <div className="absolute top-3 right-3">
           <ThemeSwitcher />
         </div>
-        <div className="mx-auto mb-6 w-fit rounded-full border border-accent/70 bg-background p-1 shadow-[0_0_0_4px_hsl(var(--accent)/0.08)]">
+        <div className="border-accent/70 bg-background mx-auto mb-6 w-fit rounded-full border p-1 shadow-[0_0_0_4px_hsl(var(--accent)/0.08)]">
           <Image
             src="/harry-thomas.jpg"
             alt="Harry Thomas in ski gear in the mountains"
@@ -78,13 +78,13 @@ export default function Home() {
           >
             Hi, I&apos;m Harry Thomas
           </h1>
-          <p className="text-[0.95rem] text-muted-foreground">
+          <p className="text-muted-foreground text-[0.95rem]">
             I&apos;m a staff software engineer.
           </p>
-          <p className="text-[0.95rem] text-muted-foreground">
+          <p className="text-muted-foreground text-[0.95rem]">
             I have a passion for separating signal from noise.
           </p>
-          <p className="text-[0.95rem] text-muted-foreground">
+          <p className="text-muted-foreground text-[0.95rem]">
             Please ask me about it! 😊
           </p>
         </div>
