@@ -3,6 +3,7 @@ import { Inter as FontSans } from 'next/font/google'
 
 import './globals.css'
 
+import { AgentBridge } from '@/components/custom/agentBridge'
 import { cn } from '@/lib/utils'
 import { PostHogProvider } from '@/providers/posthogProvider'
 import { ThemeProvider } from '@/providers/themeProvider'
@@ -27,6 +28,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <AgentBridge />
         <PostHogProvider>
           <ThemeProvider
             attribute="class"

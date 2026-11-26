@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/button'
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 import { BriefcaseBusiness, FileText } from 'lucide-react'
 
@@ -96,9 +96,9 @@ export default function Home() {
             // Only app routes use next/link; static files such as the PDF and
             // external profiles use plain anchors so Next does not prefetch
             // them as RSC payloads.
-            const Anchor = route ? Link : 'a'
             return (
-              <Anchor
+              <NavigationLink
+                route={route}
                 key={label}
                 href={href}
                 target={external ? '_blank' : undefined}
@@ -107,7 +107,7 @@ export default function Home() {
               >
                 <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
                 <span>{label}</span>
-              </Anchor>
+              </NavigationLink>
             )
           })}
         </nav>

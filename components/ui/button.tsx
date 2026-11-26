@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import * as React from 'react'
+import { renderElement } from '@ui-sdk/react/primitive'
 import { Button as SdkButton } from '@ui-sdk/react/button'
 import { cva, type VariantProps } from 'class-variance-authority'
 
@@ -45,15 +47,19 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, children, ...props }, ref) => {
+    const child = asChild
+      ? (React.Children.only(children) as React.ReactElement<{ href?: string }>)
+      : undefined
     return (
       <SdkButton
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
         render={
-          asChild
-            ? (React.Children.only(children) as React.ReactElement)
-            : undefined
+          child?.props.href
+            ? (partProps) =>
+                renderElement('a', { ...partProps, type: undefined }, child)
+            : child
         }
       >
         {asChild ? undefined : children}
@@ -64,3 +70,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button'
 
 export { Button, buttonVariants }
+
+export function NavigationLink({
+  route,
+  children,
+  href,
+  ...props
+}: React.ComponentProps<'a'> & { href: string; route?: boolean }) {
+  const Anchor = route ? Link : 'a'
+  return (
+    <SdkButton
+      render={(partProps) => (
+        <Anchor
+          {...(partProps as React.ComponentProps<'a'>)}
+          {...props}
+          href={href}
+          type={undefined}
+        >
+          {children}
+        </Anchor>
+      )}
+    />
+  )
+}

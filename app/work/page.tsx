@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/button'
 import { ArrowLeft, FileText } from 'lucide-react'
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
@@ -42,7 +42,8 @@ export default function WorkPage() {
     <main className="portfolio-grid min-h-svh">
       <header className="border-border/80 bg-background/95 sticky top-0 z-40 border-b px-4 backdrop-blur-xs sm:px-8">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4">
-          <Link
+          <NavigationLink
+            route
             href="/"
             className="focus-ring flex min-h-11 items-center gap-2 font-mono text-sm font-semibold tracking-[-0.02em]"
           >
@@ -51,19 +52,19 @@ export default function WorkPage() {
               /
             </span>
             <span className="text-muted-foreground">Work</span>
-          </Link>
+          </NavigationLink>
 
           <nav
             aria-label="Portfolio navigation"
             className="flex items-center gap-1"
           >
-            <Link href="/" className="header-link">
+            <NavigationLink route href="/" className="header-link">
               <ArrowLeft aria-hidden="true" className="h-4 w-4" />
               Home
-            </Link>
+            </NavigationLink>
             <div className="hidden items-center gap-1 md:flex">
               {externalLinks.map(({ label, href, external }) => (
-                <a
+                <NavigationLink
                   key={label}
                   href={href}
                   target={external ? '_blank' : undefined}
@@ -71,7 +72,7 @@ export default function WorkPage() {
                   className="header-link"
                 >
                   {label}
-                </a>
+                </NavigationLink>
               ))}
             </div>
             <ThemeSwitcher />
@@ -103,7 +104,7 @@ export default function WorkPage() {
           </p>
           <nav aria-label="Additional portfolio links" className="grid gap-2">
             {externalLinks.map(({ label, href, icon: Icon, external }) => (
-              <a
+              <NavigationLink
                 key={label}
                 href={href}
                 target={external ? '_blank' : undefined}
@@ -112,7 +113,7 @@ export default function WorkPage() {
               >
                 <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
                 {label}
-              </a>
+              </NavigationLink>
             ))}
           </nav>
         </footer>

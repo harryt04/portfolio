@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/button'
 import { ExternalLink, Github, MonitorUp } from 'lucide-react'
 
 import type { PortfolioProject } from '@/lib/portfolio-projects'
@@ -158,7 +158,7 @@ export function ProjectShowcase({
 
               <div className="mt-auto pt-3 md:pt-6">
                 <div className="grid grid-cols-2 gap-2">
-                  <Link
+                  <NavigationLink
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
@@ -166,8 +166,8 @@ export function ProjectShowcase({
                   >
                     <ExternalLink aria-hidden="true" className="h-4 w-4" />
                     Open app
-                  </Link>
-                  <Link
+                  </NavigationLink>
+                  <NavigationLink
                     href={project.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
@@ -175,7 +175,7 @@ export function ProjectShowcase({
                   >
                     <Github aria-hidden="true" className="h-4 w-4" />
                     Source
-                  </Link>
+                  </NavigationLink>
                 </div>
               </div>
             </div>
