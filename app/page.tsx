@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { NavigationLink } from '@/components/ui/button'
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
-import { BriefcaseBusiness, FileText } from 'lucide-react'
+import { BriefcaseBusiness, FileText, Github, Linkedin } from 'lucide-react'
 
 import { ThemeSwitcher } from '@/components/custom/themeSwitcher'
 
@@ -31,14 +30,14 @@ const actions = [
   {
     label: 'My GitHub',
     href: 'https://github.com/harryt04',
-    icon: GitHubLogoIcon,
+    icon: Github,
     external: true,
     route: false,
   },
   {
     label: 'My LinkedIn',
     href: 'https://www.linkedin.com/in/harrison-thomas04/',
-    icon: LinkedInLogoIcon,
+    icon: Linkedin,
     external: true,
     route: false,
   },
