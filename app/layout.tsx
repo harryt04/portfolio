@@ -3,11 +3,12 @@ import { Inter as FontSans } from 'next/font/google'
 
 import './globals.css'
 
+import { AgentBridge } from '@/components/custom/agentBridge'
 import { cn } from '@/lib/utils'
 import { PostHogProvider } from '@/providers/posthogProvider'
 import { ThemeProvider } from '@/providers/themeProvider'
 
-const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' })
+const fontSans = FontSans({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://harryt.dev'),
@@ -23,10 +24,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans text-foreground antialiased',
+          'bg-background text-foreground min-h-screen font-sans antialiased',
           fontSans.variable,
         )}
       >
+        <AgentBridge />
         <PostHogProvider>
           <ThemeProvider
             attribute="class"

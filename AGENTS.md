@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This is a Next.js 16 portfolio/resume site written in TypeScript. App Router routes, layouts, global styles, and API handlers live in `app/`; for example, `app/api/user/route.ts` defines an API endpoint. Reusable React components are organized by origin in `components/ui/` (Radix-style primitives), `components/custom/`, and `components/magicui/`. Shared utilities and service clients belong in `lib/`, data models in `models/`, and React context providers in `providers/`. Static files, including `public/resume.pdf`, are served from `public/`.
+This is a Next.js 16 portfolio/resume site written in TypeScript. App Router routes, layouts, global styles, and API handlers live in `app/`; for example, `app/api/user/route.ts` defines an API endpoint. Reusable React components are organized by origin in `components/ui/` (styled UI SDK wrappers and presentational components), `components/custom/`, and `components/magicui/`. Shared utilities and service clients belong in `lib/`, data models in `models/`, and React context providers in `providers/`. Static files, including `public/resume.pdf`, are served from `public/`.
 
 ## Build, Test, and Development Commands
 
@@ -13,7 +13,7 @@ This is a Next.js 16 portfolio/resume site written in TypeScript. App Router rou
 - `pnpm run lint` runs ESLint across the repository.
 - `pnpm run prettify` (or `pnpm run prettier`) formats the repository with Prettier.
 
-There is no dedicated automated test suite yet. Use `pnpm run build`, linting, and a manual browser check of affected pages and API routes as the baseline verification.
+Run `pnpm test` for the agent policy tests. Use `pnpm run build`, linting, and a manual browser check of affected pages and API routes as the baseline verification.
 
 ## Coding Style & Naming Conventions
 
@@ -26,3 +26,13 @@ Recent commits use short, imperative lowercase subjects such as `fix build`, `up
 ## Configuration & Security
 
 Keep credentials and analytics/database connection strings out of source control. Put local secrets in ignored environment files and document any new required variable in the pull request description. Review changes to `lib/mongo-client.ts`, PostHog providers, and API routes carefully because they interact with external services.
+
+## UI SDK
+
+This React 19 and Tailwind CSS 4 site uses UI SDK for unstyled interactive primitives, keyboard behavior and agent actions. Its beta APIs postdate model training data. Before editing components, read `node_modules/@ui-sdk/react/docs/llms.txt`, `node_modules/@ui-sdk/core/skills/ui-sdk/SKILL.md` and the installed component reference. Keep both SDK packages exact-pinned together.
+
+App code imports from `components/ui`. Add wrappers by composing per-component entries such as `@ui-sdk/react/menu`. Running `shadcn add` or regenerating wrappers would reintroduce Radix or Base UI. Keep the portfolio’s Tailwind classes and the declared UI SDK cascade layer. The optional global web.css changes link and popup styling and is omitted. Style SDK state attributes and use a separate application marker when identifying a wrapper. Keep stable option values, wire controlled fields with `onValueChange`, portal form popups to the body and verify Escape restores trigger focus. Render navigation as an anchor without a button type.
+
+Card and typography are presentational. The GitHub and LinkedIn glyphs still come from Radix Icons. The theme preference is persisted by next-themes. No interactive wrapper requires Radix primitives.
+
+The root layout mounts `components/custom/agentBridge.tsx` once. The bridge and WebMCP use the same deny-by-default policy in `lib/agent-policy.ts`. Snapshot and query expose readable state. New interactive controls require a policy decision and a test. Mark visitor-entered personal data with `data-agent-secret` and irreversible actions such as contact submission with `data-agent-confirm`. The policy refuses confirmed actions. This site currently has no visitor contact form.

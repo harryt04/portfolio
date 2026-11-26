@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
+import { NavigationLink } from '@/components/ui/button'
 import { ExternalLink, Github, MonitorUp } from 'lucide-react'
 
 import type { PortfolioProject } from '@/lib/portfolio-projects'
@@ -108,12 +108,12 @@ function PreviewPlaceholder({ project }: { project: PortfolioProject }) {
 
 function PreviewSkeleton({ project }: { project: PortfolioProject }) {
   return (
-    <div className="preview-message absolute inset-x-0 bottom-0 top-8 animate-pulse">
+    <div className="preview-message absolute inset-x-0 top-8 bottom-0 animate-pulse">
       <span className="sr-only">Loading {project.name} live preview</span>
       <div aria-hidden="true" className="w-2/3 space-y-3">
-        <span className="block h-5 rounded-sm bg-muted" />
-        <span className="block h-3 rounded-sm bg-muted" />
-        <span className="block h-3 w-3/4 rounded-sm bg-muted" />
+        <span className="bg-muted block h-5 rounded-sm" />
+        <span className="bg-muted block h-3 rounded-sm" />
+        <span className="bg-muted block h-3 w-3/4 rounded-sm" />
       </div>
     </div>
   )
@@ -127,10 +127,10 @@ function PreviewFallback({
   detail?: string
 }) {
   return (
-    <div className="preview-message absolute inset-x-0 bottom-0 top-8 z-10 px-5 text-center">
+    <div className="preview-message absolute inset-x-0 top-8 bottom-0 z-10 px-5 text-center">
       <MonitorUp aria-hidden="true" className="h-6 w-6" />
-      <span className="font-semibold text-foreground">{project.name}</span>
-      <span className="max-w-xs text-xs text-muted-foreground">
+      <span className="text-foreground font-semibold">{project.name}</span>
+      <span className="text-muted-foreground max-w-xs text-xs">
         {detail ??
           'Live preview unavailable. The app and source links still work.'}
       </span>
@@ -149,16 +149,16 @@ export function ProjectShowcase({
         return (
           <li key={project.slug} className="project-card group">
             <div className="order-1 flex flex-1 flex-col p-5 sm:p-6 md:order-2">
-              <h2 className="text-xl font-bold tracking-[-0.025em]">
+              <h2 className="text-xl font-bold tracking-tight">
                 {project.name}
               </h2>
-              <p className="mt-2 min-h-[2.9em] text-[0.95rem] leading-[1.5] text-muted-foreground">
+              <p className="text-muted-foreground mt-2 min-h-[2.9em] text-[0.95rem] leading-normal">
                 {project.description}
               </p>
 
               <div className="mt-auto pt-3 md:pt-6">
                 <div className="grid grid-cols-2 gap-2">
-                  <Link
+                  <NavigationLink
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
@@ -166,8 +166,8 @@ export function ProjectShowcase({
                   >
                     <ExternalLink aria-hidden="true" className="h-4 w-4" />
                     Open app
-                  </Link>
-                  <Link
+                  </NavigationLink>
+                  <NavigationLink
                     href={project.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
@@ -175,7 +175,7 @@ export function ProjectShowcase({
                   >
                     <Github aria-hidden="true" className="h-4 w-4" />
                     Source
-                  </Link>
+                  </NavigationLink>
                 </div>
               </div>
             </div>

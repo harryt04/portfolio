@@ -1,6 +1,168 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer ui-sdk;
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility portfolio-grid {
+  background-color: hsl(var(--background));
+  background-image:
+    linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--foreground) / 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+@utility portfolio-window {
+  @apply border-border bg-card text-card-foreground border shadow-[0_24px_80px_-32px_hsl(var(--foreground)/0.34)];
+
+  &::before {
+    content: '';
+    @apply border-border bg-muted/35 absolute inset-x-0 top-0 h-8 border-b;
+  }
+}
+
+@utility portfolio-window-controls {
+  @apply pointer-events-none absolute top-2 left-3 z-10 flex items-center gap-1.5;
+
+  & > span {
+    @apply h-2 w-2 rounded-full border border-black/10;
+  }
+}
+
+@utility portfolio-action {
+  @apply border-border bg-card text-foreground hover:border-accent hover:bg-muted focus-visible:border-accent focus-visible:ring-ring focus-visible:ring-offset-background inline-flex min-h-12 items-center justify-center gap-2 border px-3 text-sm font-semibold transition-[color,background-color,border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-14px_hsl(var(--foreground)/0.45)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+}
+
+@utility header-link {
+  @apply text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-flex min-h-11 items-center gap-1.5 px-3 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+}
+
+@utility focus-ring {
+  @apply focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden;
+}
+
+@utility project-card {
+  @apply border-border bg-card text-card-foreground focus-within:border-accent hover:border-accent flex min-w-0 flex-col overflow-hidden border shadow-[0_12px_36px_-30px_hsl(var(--foreground)/0.48)] transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_20px_48px_-28px_hsl(var(--foreground)/0.5)];
+}
+
+@utility project-preview {
+  @apply border-border bg-background relative aspect-16/10 overflow-hidden border md:border-x-0 md:border-t-0;
+
+  & iframe {
+    @apply bg-background pointer-events-none absolute inset-x-0 top-8 bottom-0 w-full border-0;
+    height: calc(100% - 2rem);
+  }
+}
+
+@utility browser-bar {
+  @apply border-border bg-muted absolute inset-x-0 top-0 z-20 flex h-8 items-center gap-1.5 border-b px-3;
+
+  & > span:not(.browser-address) {
+    @apply bg-muted-foreground/50 h-1.5 w-1.5 rounded-full;
+  }
+}
+
+@utility browser-address {
+  @apply text-muted-foreground ml-2 truncate font-mono text-[10px] tracking-[0.12em] uppercase;
+}
+
+@utility preview-message {
+  @apply bg-background text-muted-foreground absolute inset-x-0 top-8 bottom-0 flex flex-col items-center justify-center gap-2 text-sm;
+}
+
+@utility live-status {
+  @apply border-border bg-background/95 text-foreground absolute bottom-3 left-3 z-20 flex items-center gap-1.5 border px-2 py-1 font-mono text-[10px] font-semibold tracking-[0.12em] uppercase shadow-xs;
+
+  & > span {
+    @apply h-1.5 w-1.5 rounded-full bg-green-500;
+  }
+}
 
 @layer base {
   :root {
@@ -70,86 +232,6 @@
   :focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
-  }
-}
-
-@layer components {
-  .portfolio-grid {
-    background-color: hsl(var(--background));
-    background-image:
-      linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px),
-      linear-gradient(
-        90deg,
-        hsl(var(--foreground) / 0.035) 1px,
-        transparent 1px
-      );
-    background-size: 36px 36px;
-  }
-
-  .portfolio-window {
-    @apply border border-border bg-card text-card-foreground shadow-[0_24px_80px_-32px_hsl(var(--foreground)/0.34)];
-  }
-
-  .portfolio-window::before {
-    content: '';
-    @apply absolute inset-x-0 top-0 h-8 border-b border-border bg-muted/35;
-  }
-
-  .portfolio-window-controls {
-    @apply pointer-events-none absolute left-3 top-2 z-10 flex items-center gap-1.5;
-  }
-
-  .portfolio-window-controls > span {
-    @apply h-2 w-2 rounded-full border border-black/10;
-  }
-
-  .portfolio-action {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 border border-border bg-card px-3 text-sm font-semibold text-foreground transition-[color,background-color,border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-muted hover:shadow-[0_8px_24px_-14px_hsl(var(--foreground)/0.45)] focus-visible:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
-
-  .header-link {
-    @apply inline-flex min-h-11 items-center gap-1.5 px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
-
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
-
-  .project-card {
-    @apply flex min-w-0 flex-col overflow-hidden border border-border bg-card text-card-foreground shadow-[0_12px_36px_-30px_hsl(var(--foreground)/0.48)] transition-[border-color,transform,box-shadow] duration-200 focus-within:border-accent hover:-translate-y-1 hover:border-accent hover:shadow-[0_20px_48px_-28px_hsl(var(--foreground)/0.5)];
-  }
-
-  .project-preview {
-    @apply relative aspect-[16/10] overflow-hidden border border-border bg-background md:border-x-0 md:border-t-0;
-  }
-
-  .project-preview iframe {
-    @apply pointer-events-none absolute inset-x-0 bottom-0 top-8 w-full border-0 bg-background;
-    height: calc(100% - 2rem);
-  }
-
-  .browser-bar {
-    @apply absolute inset-x-0 top-0 z-20 flex h-8 items-center gap-1.5 border-b border-border bg-muted px-3;
-  }
-
-  .browser-bar > span:not(.browser-address) {
-    @apply h-1.5 w-1.5 rounded-full bg-muted-foreground/50;
-  }
-
-  .browser-address {
-    @apply ml-2 truncate font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground;
-  }
-
-  .preview-message {
-    @apply absolute inset-x-0 bottom-0 top-8 flex flex-col items-center justify-center gap-2 bg-background text-sm text-muted-foreground;
-  }
-
-  .live-status {
-    @apply absolute bottom-3 left-3 z-20 flex items-center gap-1.5 border border-border bg-background/95 px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground shadow-sm;
-  }
-
-  .live-status > span {
-    @apply h-1.5 w-1.5 rounded-full bg-green-500;
   }
 }
 
