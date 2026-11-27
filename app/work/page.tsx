@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { NavigationLink } from '@/components/ui/button'
-import { ArrowLeft, FileText } from 'lucide-react'
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+import { ArrowLeft, FileText, Github, Linkedin } from 'lucide-react'
 
 import { ProjectShowcase } from '@/components/custom/projectShowcase'
 import { ThemeSwitcher } from '@/components/custom/themeSwitcher'
@@ -26,13 +25,13 @@ const externalLinks = [
   {
     label: 'My GitHub',
     href: 'https://github.com/harryt04',
-    icon: GitHubLogoIcon,
+    icon: Github,
     external: true,
   },
   {
     label: 'My LinkedIn',
     href: 'https://www.linkedin.com/in/harrison-thomas04/',
-    icon: LinkedInLogoIcon,
+    icon: Linkedin,
     external: true,
   },
 ] as const
